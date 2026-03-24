@@ -252,10 +252,11 @@
     <div class="splash-logo">MoreIQ</div>
     <div class="splash-tagline">Know More. Win More.</div>
     <div class="splash-modes">
-      <span class="date">💘 DateIQ</span>
+      <span class="date" onclick="selectMode('date')" style="cursor:pointer">💘 DateIQ</span>
       <span class="sep">|</span>
-      <span class="biz">💼 BusinessIQ</span>
+      <span class="biz" onclick="selectMode('business')" style="cursor:pointer">💼 BusinessIQ</span>
     </div>
+    <div style="color:var(--text3);font-size:11px;margin-top:16px;cursor:pointer;letter-spacing:1px" onclick="navigate('disclaimers')">TAP TO CONTINUE</div>
   </div>
 
   <!-- ════ DISCLAIMERS ════ -->
@@ -962,7 +963,10 @@ auth.onAuthStateChanged(async(user) => {
 });
 
 setTimeout(() => {
-  if (!currentUser) navigate('disclaimers');
+  const active = document.querySelector('.screen.active');
+  if (active && active.id === 'splash') {
+    navigate(currentUser ? 'modeSelect' : 'disclaimers');
+  }
 }, 2500);
 </script>
 </body>
